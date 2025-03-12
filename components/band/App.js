@@ -6,8 +6,12 @@ import { Canvas, extend, useThree, useFrame } from '@react-three/fiber';
 import { useGLTF, useTexture, Environment, Lightformer } from '@react-three/drei';
 import { BallCollider, CuboidCollider, Physics, RigidBody, useRopeJoint, useSphericalJoint } from '@react-three/rapier';
 import { MeshLineGeometry, MeshLineMaterial } from 'meshline';
+  
+
+
 
 extend({ MeshLineGeometry, MeshLineMaterial });
+
 
 const GLTF_PATH = '/assets/kartu.glb';
 const TEXTURE_PATH = '/assets/bandd.png';
@@ -17,41 +21,20 @@ useTexture.preload(TEXTURE_PATH);
 
 export default function App() {
   return (
-    <div className="app-container">
-      {/* Barra de navegación */}
-      <nav className="navbar">
-        <ul className="navbar-list">
-          <li>CURRICULUM VITAE</li>
-          <li>PROYECTO</li>
-          <li>SKILLS</li>
-          <li>SOBRE MI</li>
-          <li>CONTACTO</li>
-        </ul>
-        
-      </nav>
-      
-
-        <div className="welcome-section">
-          <h1>Bienvenido a mi portafolio</h1>
-          <p>Mi nombre es Anderson Chasiloa y te invito a conocer más sobre mí!</p>
-        </div>
-
-
-      <div className="responsive-wrapper">
-        <Canvas camera={{ position: [0, 0, 13], fov: 25 }}>
-          <ambientLight intensity={Math.PI} />
-          <Physics interpolate gravity={[0, -40, 0]} timeStep={1 / 60}>
-            <Band />
-          </Physics>
-          <Environment background blur={0.75}>
-            <color attach="background" args={['black']} />
-            <Lightformer intensity={2} color="white" position={[0, -1, 5]} rotation={[0, 0, Math.PI / 3]} scale={[100, 0.1, 1]} />
-            <Lightformer intensity={3} color="white" position={[-1, -1, 1]} rotation={[0, 0, Math.PI / 3]} scale={[100, 0.1, 1]} />
-            <Lightformer intensity={3} color="white" position={[1, 1, 1]} rotation={[0, 0, Math.PI / 3]} scale={[100, 0.1, 1]} />
-            <Lightformer intensity={10} color="white" position={[-10, 0, 14]} rotation={[0, Math.PI / 2, Math.PI / 3]} scale={[100, 10, 1]} />
-          </Environment>
-        </Canvas>
-      </div>
+    <div className="responsive-wrapper">
+      <Canvas camera={{ position: [0, 0, 13], fov: 25 }}>
+        <ambientLight intensity={Math.PI} />
+        <Physics interpolate gravity={[0, -40, 0]} timeStep={1 / 60}>
+          <Band />
+        </Physics>
+        <Environment background blur={0.75}>
+          <color attach="background" args={['black']} />
+          <Lightformer intensity={2} color="white" position={[0, -1, 5]} rotation={[0, 0, Math.PI / 3]} scale={[100, 0.1, 1]} />
+          <Lightformer intensity={3} color="white" position={[-1, -1, 1]} rotation={[0, 0, Math.PI / 3]} scale={[100, 0.1, 1]} />
+          <Lightformer intensity={3} color="white" position={[1, 1, 1]} rotation={[0, 0, Math.PI / 3]} scale={[100, 0.1, 1]} />
+          <Lightformer intensity={10} color="white" position={[-10, 0, 14]} rotation={[0, Math.PI / 2, Math.PI / 3]} scale={[100, 10, 1]} />
+        </Environment>
+      </Canvas>
     </div>
   );
 }
@@ -140,6 +123,7 @@ function Band({ maxSpeed = 50, minSpeed = 10 }) {
         <meshLineGeometry />
         <meshLineMaterial color="white" depthTest={false} resolution={[width, height]} useMap map={texture} repeat={[-4, 1]} lineWidth={1} />
       </mesh>
+      
     </>
   );
 }
